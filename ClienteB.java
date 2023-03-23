@@ -9,14 +9,23 @@ public class ClienteB extends Cliente implements InterfaceClienteService {
 
     @Override
     public Float calculoPrestamo() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'calculoPrestamo'");
+        Prestamo[] prestamos = getPrestamos();
+        Float deudaTotal = 0f;
+        for(int i=0; i < prestamos.length; i++){
+            deudaTotal += prestamos[i].getSaldo();
+        }
+        return  getIngresoMensual() * 5 - deudaTotal;
     }
+
 
     @Override
     public Float calculoBalance() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'calculoBalance'");
+        Cuenta[] cuentas = getCuentas();
+        Float saldoTotal = 0f;
+        for(int i=0; i < cuentas.length; i++){
+            saldoTotal += cuentas[i].getBalance();
+        }
+        return saldoTotal;
     }
 
 }

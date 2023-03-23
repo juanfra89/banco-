@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public abstract class Cliente {
     private Long idCliente;
@@ -112,6 +113,12 @@ public abstract class Cliente {
 
     public abstract Float calculoBalance();
 
+    public Long calculoAntiguedad(){
+        LocalDate momentoActual = LocalDate.now();
+        long antiguedad = ChronoUnit.MONTHS.between(getFechaAlta(), momentoActual);
+        return antiguedad;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -121,9 +128,8 @@ public abstract class Cliente {
             ", telefono='" + getTelefono() + "'" +
             ", email='" + getEmail() + "'" +
             ", fechaAlta='" + getFechaAlta() + "'" +
-            ", saldo en cuentas='" + 
+            ", tipoCliente='" + getClass().getName() + "'" +
             ", ingresoMensual='" + getIngresoMensual() + "'" +
-            ", prestamos='" + getPrestamos() + "'" +
             "}";
     }
 
